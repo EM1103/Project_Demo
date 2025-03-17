@@ -30,7 +30,7 @@ public class NPCDialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Debug.Log("✅ Player entered NPC trigger zone!");
+            // Debug.Log("Player entered NPC trigger zone!");
             isPlayerNearby = true;
             
             interactionIcon.SetActive(true);
@@ -42,7 +42,7 @@ public class NPCDialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Debug.Log("❌ Player left NPC trigger zone!");
+            // Debug.Log("Player left NPC trigger zone!");
             isPlayerNearby = false;
 
             // Hide Interaction Icon when player leaves
@@ -55,7 +55,7 @@ public class NPCDialogue : MonoBehaviour
             }
             else
             {
-                EndDialogue(); // ✅ Close dialogue if it's still open
+                EndDialogue(); // Close dialogue if it's still open
             }
         }
     }
@@ -64,7 +64,7 @@ public class NPCDialogue : MonoBehaviour
     {
         story = new Story(inkJSON.text);
         dialoguePanel.SetActive(true);
-        talkButton.gameObject.SetActive(false); // ❌ Hide Talk Button
+        talkButton.gameObject.SetActive(false); // Hide Talk Button
         DisplayNextLine();
     }
 
@@ -103,6 +103,6 @@ public class NPCDialogue : MonoBehaviour
     void EndDialogue()
     {
         dialoguePanel.SetActive(false);
-        talkButton.gameObject.SetActive(true); // ✅ Re-enable Talk Button
+        talkButton.gameObject.SetActive(true); // Re-enable Talk Button
     }
 }
