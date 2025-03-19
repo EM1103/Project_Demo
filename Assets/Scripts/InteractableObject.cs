@@ -1,24 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InteractableObject : MonoBehaviour
 {
-    public GameObject interactionIcon;
-    public string sceneToLoad; // Set this in the Inspector
+    public GameObject interactionIcon;  // The floating interaction icon
+    public Button enterButton; // The UI button to enter a new area
+    public string sceneToLoad; // Scene to load when interacting
 
     private bool isPlayerNearby = false;
 
     void Start()
     {
-        interactionIcon.SetActive(false); // Hide icon at start
-    }
+        interactionIcon.SetActive(false);
+        enterButton.gameObject.SetActive(false);
 
-    void Update()
-    {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E)) // Change this for mobile buttons later
-        {
-            LoadNewScene();
-        }
+        // Assign button function
+        enterButton.onClick.AddListener(LoadNewScene);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,6 +25,7 @@ public class InteractableObject : MonoBehaviour
         {
             isPlayerNearby = true;
             interactionIcon.SetActive(true);
+            enterButton.gameObject.SetActive(true); // Show the button
         }
     }
 
@@ -36,10 +35,11 @@ public class InteractableObject : MonoBehaviour
         {
             isPlayerNearby = false;
             interactionIcon.SetActive(false);
+            enterButton.gameObject.SetActive(false); // Hide the button
         }
     }
 
-    public void LoadNewScene()
+    void LoadNewScene()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
